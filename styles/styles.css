@@ -66,18 +66,20 @@ header {
 	flex-direction: column;
 	flex: 1 1 100%;
 	position: relative;
+	height: 80vmin;
 }
 header .container {
 	padding-left: 2.125rem;
 	padding-right: 2.125rem;
 }
 @media screen and (min-width: 768px) {
-	header {
-		height: 100vh;
-	}
 	header .container {
 		padding-left: 2.5rem;
 		padding-right: 2.5rem;
+	}
+	header {
+		height: 100vmin;
+		min-height: 50vmax;
 	}
 }
 
@@ -191,9 +193,15 @@ header .container {
 .btn-outline {
 	border: 1px solid var(--white);
 }
+
+@media screen and (min-width: 576px) {
+	.btn {
+		font-size: 1rem;
+	}
+}
 @media screen and (min-width: 768px) {
 	.btn {
-		font-size: 1.1rem;
 		padding: 0.9rem 1.25rem;
+		font-size: 1.1rem;
 	}
 }
