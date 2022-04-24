@@ -44,17 +44,19 @@ ul {
 	width: 100%;
 	max-width: var(--sm);
 }
-
+/* between "md" and "lg" */
 @media screen and (min-width: 768px) and (max-width: 992px) {
 	.container-content {
 		max-width: var(--md);
 	}
 }
+/* between "lg" and "xl" */
 @media screen and (min-width: 992px) and (max-width: 1110px) {
 	.container-content {
 		max-width: var(--lg);
 	}
 }
+/* over "xl" */
 @media screen and (min-width: 1110px) {
 	.container-content {
 		max-width: var(--xl);
@@ -63,10 +65,10 @@ ul {
 
 header {
 	display: flex;
-	flex-direction: column;
 	flex: 1 1 100%;
-	position: relative;
+	flex-direction: column;
 	height: 80vmin;
+	position: relative;
 }
 header .container {
 	padding-left: 2.125rem;
@@ -131,11 +133,12 @@ header .container {
 	flex-direction: column;
 }
 .banner h1 {
-	font-size: 1.5rem; /* temp */
+	font-size: 2rem; /* temp */
 	font-style: italic; /* temp */
 	margin-bottom: 0.5rem;
 }
 .banner .description {
+	font-size: 1rem;
 	margin-bottom: 1.25rem;
 }
 .banner .btn-group {
@@ -147,6 +150,16 @@ header .container {
 		background-position: 100%; /* put the background image back to its space because overlap is no longer feared */
 	}
 }
+@media screen and (min-width: 576px) {
+	.banner h1 {
+		font-size: 3rem; /* temp */
+		margin-bottom: 0.75rem;
+	}
+	.banner .description {
+		font-size: 1.5rem;
+		margin-bottom: 2rem;
+	}
+}
 @media screen and (min-width: 768px) {
 	.banner h1 {
 		font-size: 5rem; /* temp */
@@ -154,6 +167,7 @@ header .container {
 	}
 	.banner .description {
 		order: 2;
+		font-size: 2rem;
 	}
 	.banner .btn-group {
 		order: 1;
@@ -201,7 +215,114 @@ header .container {
 }
 @media screen and (min-width: 768px) {
 	.btn {
-		padding: 0.9rem 1.25rem;
+		width: 12rem;
+		min-width: max-content;
+		text-align: center;
 		font-size: 1.1rem;
+		padding: 0.9rem 1.25rem;
+	}
+}
+
+/* MAIN */
+.main-section {
+	text-align: center;
+}
+.main-section:nth-child(odd) {
+	background-color: var(--red);
+}
+.main-section:nth-child(even) {
+	background-color: var(--blue);
+}
+.main-section .title {
+	font-size: 1.25rem; /* temp */
+	margin-bottom: 0.875rem;
+}
+.main-section .description {
+	margin-bottom: 2rem;
+}
+@media screen and (min-width: 768px) {
+	.main-section .title {
+		font-size: 2rem; /* temp */
+		margin-bottom: 1.25rem;
+	}
+	.main-section .description {
+		margin-bottom: 1.5rem;
+	}
+	.main-section .title,
+	.main-section .description {
+		width: 60%;
+	}
+	.main-section:nth-child(odd) .title,
+	.main-section:nth-child(odd) .description {
+		text-align: start;
+	}
+}
+@media screen and (min-width: 992px) {
+	.main-section .title,
+	.main-section .description {
+		width: 50%;
+	}
+}
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	padding-bottom: 1.5rem;
+}
+.card {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.card-img {
+	margin-bottom: 1.25rem;
+}
+.card-img img {
+	width: 60%;
+	display: inline-block;
+	max-width: 18.75rem;
+}
+.card-body {
+	margin-bottom: 1.5rem;
+}
+.card-body li::before {
+	content: ".";
+	padding: 0 0.5rem;
+	font-weight: 500;
+	display: inline-block;
+	transform: translateY(-25%);
+}
+.card-footer {
+	margin-bottom: 4.375rem;
+}
+@media screen and (min-width: 768px) {
+	.cards {
+		justify-content: center;
+		column-gap: 10%;
+		padding-bottom: 3.5rem;
+	}
+	.card {
+		width: 45%;
+	}
+	.card-body {
+		text-align: justify;
+		margin-bottom: 2.5rem;
+	}
+	.card-img {
+		margin-bottom: 2.5rem;
+	}
+	.card-img img {
+		width: 100%;
+		max-width: 100%;
+	}
+}
+@media screen and (min-width: 992px) {
+	.cards {
+		justify-content: space-between;
+		column-gap: 0%;
+	}
+	.card {
+		width: 28%;
 	}
 }
