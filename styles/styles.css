@@ -139,7 +139,7 @@ header .container {
 	background-repeat: no-repeat;
 	background-position: 50% 100%; /* chose 50% to push the image rightward, in order to minimize overlap between the buttons and the image*/
 	background-size: auto 100%;
-	padding-top: 5.25rem;
+	padding-top: 5.9375rem;
 	padding-bottom: 4rem;
 }
 .banner .container-content {
