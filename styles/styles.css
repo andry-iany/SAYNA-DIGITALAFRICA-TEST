@@ -5,9 +5,9 @@
       J'ai essayé de le retélécharger et utilisé ce nouveau mais le problème reste le même.
       - En plus, j'ai essayé de le convertir en d'autre format comme .ttf (pour verifier s'il est valid), 
       mais tous les convertisseurs que j'ai utilisé complainent qu'il est corrompu.
-      - Donc, j'ai cherché un "font" similaire sur Google pour le remplacer temporairement. J'ai ainsi choisi "SquarePeg". 
+      - Donc, j'ai cherché un "font" similaire sur Google pour le remplacer temporairement, en attendant le valid "font". J'ai ainsi choisi "SquarePeg". 
       - Les éléments ou blocks qui utilisent ou sont associés à ce "font" temporaire ont un commentaire "TODO: ..." dans ce fichier-ci.
-      - Une fois qu'on a le font non-corrompu, on peut juste remplacer ce font temporaire.
+      - Une fois qu'on a le "font" non-corrompu, on peut juste remplacer ce font temporaire.
       - Pour ce faire, il faut
           - remplacer le fichier "../assets/fonts/Typo-FarFromHomecoming.woff2" avec le "font" valid,
         puis mettre à jour le chemin de "src" dans ce block si necessaire.
