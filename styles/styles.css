@@ -273,6 +273,25 @@ header .container {
 	color: var(--white);
 }
 
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+}
+.icon img {
+	width: 60%;
+	height: 60%;
+}
+@media screen and (min-width: 768px) {
+	.icon {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+}
+
 .main-section {
 	text-align: center;
 }
@@ -603,19 +622,9 @@ footer .socials {
 	margin-bottom: 1.25rem;
 }
 footer .icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 50%;
 	background-color: var(--red);
 }
 @media screen and (min-width: 768px) {
-	footer .icon {
-		width: 2.5rem;
-		height: 2.5rem;
-	}
 	footer .socials {
 		margin-bottom: 2.5rem;
 	}
@@ -623,4 +632,30 @@ footer .icon {
 
 footer .copyright {
 	text-align: center;
+}
+
+.audio-wrapper {
+	position: fixed;
+	display: flex;
+	align-items: flex-end;
+	flex-direction: row-reverse;
+	gap: 1rem;
+	right: 1rem;
+	bottom: 1rem;
+}
+.audio-wrapper .icon {
+	cursor: pointer;
+	background-color: #fffafa8f;
+	box-shadow: 0 3px 5px #0000008a;
+	opacity: 0.5;
+	transition: opacity ease 0.3s;
+}
+.audio-wrapper:hover .icon {
+	opacity: 1;
+}
+.audio-wrapper audio {
+	display: none;
+}
+.audio-wrapper:hover audio {
+	display: block;
 }
