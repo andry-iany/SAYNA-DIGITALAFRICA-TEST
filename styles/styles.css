@@ -1,12 +1,59 @@
 @font-face {
-	font-family: FarFromHomecoming;
-	src: url(../assets/Typo-FarFromHomecoming.woff2) format("woff2");
+	/* 
+    NOTES: 
+      - Ce "font" semble être corrompu. Le navigateur ne peut pas le decoder. 
+      J'ai essayé de le retélécharger et utilisé ce nouveau mais le problème reste le même.
+      - En plus, j'ai essayé de le convertir en d'autre format comme .ttf (pour verifier s'il est valid), 
+      mais tous les convertisseurs que j'ai utilisé complainent qu'il est corrompu.
+      - Donc, j'ai cherché un "font" similaire sur Google pour le remplacer temporairement. J'ai ainsi choisi "SquarePeg". 
+      - Les éléments ou blocks qui utilisent ou sont associés à ce "font" temporaire ont un commentaire "TODO: ..." dans ce fichier-ci.
+      - Une fois qu'on a le font non-corrompu, on peut juste remplacer ce font temporaire.
+      - Pour ce faire, il faut
+          - remplacer le fichier "../assets/fonts/Typo-FarFromHomecoming.woff2" avec le "font" valid,
+        puis mettre à jour le chemin de "src" dans ce block si necessaire.
+          - suivre les instructions preséntes dans les blocks ayant le commentaire "TODO:..."
+          - supprimer le font temporaire.
+  */
+	font-family: "FarFromHomecoming";
+	src: url(../assets/fonts/Typo-FarFromHomecoming.woff2) format("woff2");
 	font-style: normal;
 	font-weight: normal;
 }
+@font-face {
+	/*
+    TODO:
+      - supprimer ce block une fois qu'on a un font valid dans "FarFromHomecoming".
+  */
+	font-family: "FontFallback";
+	src: url(../assets/fonts/SquarePeg-Regular.ttf) format("TrueType");
+}
+@font-face {
+	font-family: "Montserrat";
+	src: url(../assets/fonts/Montserrat-Bold.ttf) format("TrueType");
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Montserrat";
+	src: url(../assets/fonts/Montserrat-SemiBold.ttf) format("TrueType");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Montserrat";
+	src: url(../assets/fonts/Montserrat-Medium.ttf) format("TrueType");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Montserrat";
+	src: url(../assets/fonts/Montserrat-Regular.ttf) format("TrueType");
+	font-weight: normal;
+	font-style: normal;
+}
 
 :root {
-	/* colors */
+	/* couleurs */
 	--red: #b11313;
 	--white: #ffffff;
 	--black: #000000;
@@ -21,7 +68,6 @@
 	min-width: 390px;
 }
 
-/* GENERAL STYLE */
 * {
 	margin: 0;
 	padding: 0;
@@ -29,7 +75,8 @@
 }
 body {
 	color: var(--white);
-	min-height: 100vh;
+	font-family: "Montserrat", sans-serif;
+	font-size: 0.875rem;
 }
 a,
 a:active,
@@ -42,7 +89,10 @@ ul {
 	list-style-type: none;
 }
 
-/* We use both '.container' and '.container-content' to avoid code repetion when aligning the left and right of different sections */
+/* 
+  Utilise ".container" and ".container-content" ensemble afin d'eviter la répétition de code nécessaire 
+  pour pouvoir aligner des différentes sections telles que "header", "main", "footer".
+*/
 .container {
 	width: 100%;
 	padding-left: 2.5rem;
@@ -53,19 +103,16 @@ ul {
 	width: 100%;
 	max-width: var(--sm);
 }
-/* between "md" and "lg" */
 @media screen and (min-width: 768px) and (max-width: 992px) {
 	.container-content {
 		max-width: var(--md);
 	}
 }
-/* between "lg" and "xl" */
 @media screen and (min-width: 992px) and (max-width: 1110px) {
 	.container-content {
 		max-width: var(--lg);
 	}
 }
-/* over "xl" */
 @media screen and (min-width: 1110px) {
 	.container-content {
 		max-width: var(--xl);
@@ -103,8 +150,8 @@ header .container {
 }
 .nav .container-content {
 	display: flex;
-	justify-content: space-between;
 	align-items: flex-end;
+	justify-content: space-between;
 	flex: 1 1 100%;
 }
 .nav-links {
@@ -120,13 +167,8 @@ header .container {
 		justify-content: flex-end;
 		gap: 8%;
 		width: 100%;
+		font-size: 0.9rem;
 		padding: 0.375rem 0;
-		font-size: 1rem;
-	}
-}
-@media screen and (min-width: 992px) {
-	.nav-links {
-		font-size: 1.25rem;
 	}
 }
 
@@ -134,23 +176,35 @@ header .container {
 	display: flex;
 	align-items: center;
 	height: 100%;
+	padding-top: 5.9375rem;
+	padding-bottom: 4rem;
 	background-image: url(../assets/images/img1.png),
 		linear-gradient(var(--black), var(--red));
 	background-repeat: no-repeat;
-	background-position: 50% 100%; /* chose 50% to push the image rightward, in order to minimize overlap between the buttons and the image*/
 	background-size: auto 100%;
-	padding-top: 5.9375rem;
-	padding-bottom: 4rem;
+	/* 
+    Choisi "50% 100%" (ci-dessous) pour pouvoir pousser l'image (background-image) un peu à droite,
+    dans le but de minimiser la superposition entre l'image et le button à coté.
+    Cette valeur sera ramenée à "100% 100%" au prochain breakpoint. 
+  */
+	background-position: 50% 100%;
 }
 .banner .container-content {
 	display: flex;
 	flex-direction: column;
 }
 .banner .title {
-	text-transform: uppercase;
-	font-size: 2rem; /* temp */
-	font-family: FarFromHomecoming;
 	margin-bottom: 0.5rem;
+	text-transform: uppercase;
+	/* 
+    TODO: 
+    - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+    - supprimer "FontFallback", "letter-spacing", "font-style".
+  */
+	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
+	font-size: 2.25rem;
+	font-style: italic;
+	letter-spacing: 0.3rem;
 }
 .banner .description {
 	font-size: 1rem;
@@ -162,27 +216,48 @@ header .container {
 }
 @media screen and (min-width: 440px) {
 	.banner {
-		background-position: 100%; /* put the background image back to its place because overlap is no longer an issue from this point on. */
+		/* Remet la "background-image" à sa position puisque la superposition avec le button à coté n'est plus problématique. */
+		background-position: 100%;
 	}
 }
 @media screen and (min-width: 576px) {
-	.banner h1 {
-		font-size: 3rem; /* temp */
+	.banner {
+		padding-top: 7rem;
+		padding-bottom: 6rem;
+	}
+	.banner .title {
 		margin-bottom: 0.75rem;
+		/* 
+      TODO: 
+        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+        - supprimer "font-style".
+    */
+		font-size: 3rem;
+		letter-spacing: 0.5rem;
 	}
 	.banner .description {
-		font-size: 1.5rem;
+		font-size: 1.1rem;
 		margin-bottom: 2rem;
 	}
 }
 @media screen and (min-width: 768px) {
+	.banner {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
 	.banner .title {
-		font-size: 5rem; /* temp */
-		margin-bottom: 5rem;
+		margin-bottom: 2.5rem;
+		/* 
+      TODO: 
+        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+        - supprimer "font-style".
+    */
+		font-size: 7rem;
+		letter-spacing: 0.8rem;
 	}
 	.banner .description {
 		order: 2;
-		font-size: 2rem;
+		font-size: 1.25rem;
 	}
 	.banner .btn-group {
 		order: 1;
@@ -196,10 +271,10 @@ header .container {
 }
 
 .logo {
-	height: 2.25rem;
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
+	height: 2.25rem;
 }
 .logo img {
 	height: 100%;
@@ -220,9 +295,10 @@ header .container {
 
 .btn {
 	display: inline-block;
+	font-size: 0.75rem;
+	font-weight: 600;
 	border-radius: 1.5rem;
 	padding: 0.75rem 1.25rem;
-	font-size: 0.9rem;
 	cursor: pointer;
 }
 .btn-white {
@@ -235,27 +311,22 @@ header .container {
 	color: var(--white);
 	background-color: transparent;
 }
-@media screen and (min-width: 576px) {
-	.btn {
-		font-size: 1rem;
-	}
-}
 @media screen and (min-width: 768px) {
 	.btn {
+		font-size: inherit;
 		width: 12rem;
 		min-width: max-content;
 		text-align: center;
-		font-size: 1.1rem;
 		padding: 0.9rem 1.25rem;
 	}
 }
 
 .input {
 	display: block;
-	padding: 0.5rem 1rem;
-	border-radius: 2rem;
-	outline: none;
 	font: inherit;
+	border-radius: 2rem;
+	padding: 0.5rem 1rem;
+	outline: none;
 }
 .input-white {
 	background-color: var(--white);
@@ -303,8 +374,18 @@ header .container {
 }
 .main-section .title {
 	text-transform: uppercase;
-	font-size: 1.25rem; /* temp */
 	margin-bottom: 0.875rem;
+	white-space: nowrap;
+	/* 
+    TODO: 
+    - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+    - supprimer "FontFallback", "font-style", "word-spacing","letter-spacing".
+  */
+	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
+	font-size: 1.65rem;
+	font-style: italic;
+	word-spacing: 0.1875rem;
+	letter-spacing: 0.1rem;
 }
 .main-section .description {
 	margin-bottom: 2rem;
@@ -317,9 +398,9 @@ header .container {
 	padding-top: 5rem;
 	padding-bottom: 3.75rem;
 	background-image: url(../assets/images/img5.png);
-	background-position: center left;
-	background-repeat: no-repeat;
 	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position: center left;
 }
 .main-section#main-section-2 .description {
 	margin-bottom: 1.875rem;
@@ -331,8 +412,10 @@ header .container {
 .main-section#main-section-3 {
 	padding-top: 2.5rem;
 	padding-bottom: 2.8125rem;
-	/* we'll use both "::before" and "::after" to properly position the image used as background for this section */
-	/* so remove the background color from the element and we'll reapply it using its "::before" and "::after"" */
+	/* 
+    On va utiliser "::before" et "::after" pour bien positioner la "background-image" 
+    (en combination avec "background-color") de cette section. 
+  */
 	background-color: transparent;
 	position: relative;
 	overflow: hidden;
@@ -353,7 +436,8 @@ header .container {
 	background-size: auto 60%;
 	background-repeat: no-repeat;
 	background-position: center bottom;
-	transform: translateX(33%); /* it's needed to push the image rightward */
+	/* Pousser l'image un peu à droite pour minimiser la superposition avec d'autres éléments*/
+	transform: translateX(33%);
 }
 .main-section#main-section-3 .description {
 	margin-bottom: 3.75rem;
@@ -384,8 +468,12 @@ header .container {
 }
 @media screen and (min-width: 768px) {
 	.main-section .title {
-		font-size: 2rem; /* temp */
 		margin-bottom: 1.25rem;
+		/* 
+      TODO: 
+        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+    */
+		font-size: 2.5rem;
 	}
 	.main-section .description {
 		margin-bottom: 1.5rem;
@@ -405,10 +493,10 @@ header .container {
 		margin-right: 0;
 	}
 	.main-section#main-section-1 {
-		/* At this breakpoint, the foot of Spiderman (in the header background image) overflows, so it's hidden below this element. */
-		/* To get around that,  */
-		/* - we need to remove the background color from this element in order to show the Spiderman's foot, yet we keep the text content shown. */
-		/* - we can restore the background color with its ::before, with z-index negative. */
+		/* 
+      On se sert du "::before" de cet element pour afficher sa "background-color" 
+      tout en tenant la portion de l'image de "header", qui deborde, affichée avec le texte de cette section.
+    */
 		position: relative;
 		background-color: transparent;
 	}
@@ -489,7 +577,7 @@ header .container {
 	margin-bottom: 1.5rem;
 }
 .card-body li::before {
-	/* to restore the list-style */
+	/* Ceci est utilisé pour personnaliser le "list-style-type" de "li" */
 	content: ".";
 	display: inline-block;
 	font-weight: 500;
@@ -537,16 +625,16 @@ footer {
 	position: relative;
 }
 footer::after {
-	/* we use this to draw the line at the end of the page in mobile device. */
+	/* Ceci est utilisé pour faire apparaitre la ligne à la fin de la page (en mobile et tablet seulement) */
 	content: "";
-	width: 30%;
-	height: 0.3rem;
-	border-radius: 0.5rem;
-	background-color: var(--white);
 	position: absolute;
 	bottom: 0.625rem;
 	left: 50%;
 	transform: translateX(-50%);
+	width: 30%;
+	height: 0.3rem;
+	border-radius: 0.5rem;
+	background-color: var(--white);
 }
 .footer-links {
 	position: relative;
@@ -568,11 +656,11 @@ footer::after {
 	background-color: var(--red);
 	border: none;
 	outline: none;
-	padding: 0.25rem 1.25rem;
 	border-radius: 1.25rem;
+	padding: 0.25rem 1.25rem;
 }
 .footer-links .logo-wrapper {
-	order: 6;
+	order: 6; /* pour déplacer le logo (et son wrapper) au dessous des liens dans footer. */
 	width: max-content;
 	align-self: center;
 	margin-top: 1rem;
@@ -610,7 +698,7 @@ footer::after {
 		transform: none;
 	}
 	.footer-links .logo-wrapper {
-		order: initial;
+		order: initial; /* Remet le logo (et son wrapper) à sa position initiale. */
 		margin-top: 0;
 	}
 }
