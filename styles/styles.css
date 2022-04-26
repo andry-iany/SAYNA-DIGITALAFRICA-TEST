@@ -1,6 +1,8 @@
 @font-face {
 	font-family: FarFromHomecoming;
 	src: url(../assets/Typo-FarFromHomecoming.woff2) format("woff2");
+	font-style: normal;
+	font-weight: normal;
 }
 
 :root {
@@ -132,7 +134,7 @@ header .container {
 	display: flex;
 	align-items: center;
 	height: 100%;
-	background-image: url(/assets/images/img1.png),
+	background-image: url(../assets/images/img1.png),
 		linear-gradient(var(--black), var(--red));
 	background-repeat: no-repeat;
 	background-position: 50% 100%; /* chose 50% to push the image rightward, in order to minimize overlap between the buttons and the image*/
