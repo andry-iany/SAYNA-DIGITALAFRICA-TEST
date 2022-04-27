@@ -296,7 +296,7 @@ header .container {
 	/* 
     TODO: 
     - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
-    - supprimer "FontFallback", "letter-spacing", "font-style".
+    - supprimer "FontFallback", supprimer ou ajuster les valeurs de "letter-spacing", "font-style".
   */
 	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
 	font-size: 2.25rem;
@@ -313,7 +313,6 @@ header .container {
 }
 @media screen and (min-width: 440px) {
 	.banner {
-		/* Remet la "background-image" à sa position puisque la superposition avec le button à coté n'est plus problématique. */
 		background-position: 100%;
 	}
 }
