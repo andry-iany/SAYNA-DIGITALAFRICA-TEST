@@ -1,13 +1,15 @@
 @font-face {
 	/* 
     NOTES: 
-      - Ce "font" semble être corrompu. Le navigateur ne peut pas le decoder. 
+      - Ce "font" ("FarFromHomecoming") semble être corrompu. Le navigateur ne peut pas le decoder. 
       J'ai essayé de le retélécharger et utilisé ce nouveau mais le problème reste le même.
       - En plus, j'ai essayé de le convertir en d'autre format comme .ttf (pour verifier s'il est valid), 
       mais tous les convertisseurs que j'ai utilisé complainent qu'il est corrompu.
-      - Donc, j'ai cherché un "font" similaire sur Google pour le remplacer temporairement, en attendant le valid "font". J'ai ainsi choisi "SquarePeg". 
+      - Donc on doit le signaler au client.
+      - Mais en attendant le "font" valid, j'ai recherché un "font" similaire sur Google pour le remplacer temporairement.
+      - J'ai ainsi choisi "SquarePeg" (font-family: "FontFallback" dans le block suivant).
       - Les éléments ou blocks qui utilisent ou sont associés à ce "font" temporaire ont un commentaire "TODO: ..." dans ce fichier-ci.
-      - Une fois qu'on a le "font" non-corrompu, on peut juste remplacer ce font temporaire.
+      - Une fois qu'on a le "font" non-corrompu, on peut juste remplacer ce "font" temporaire.
       - Pour ce faire, il faut
           - remplacer le fichier "../assets/fonts/Typo-FarFromHomecoming.woff2" avec le "font" valid,
         puis mettre à jour le chemin de "src" dans ce block si necessaire.
@@ -21,8 +23,10 @@
 }
 @font-face {
 	/*
+    NOTE:
+      - Ce block contient le font temporaire.
     TODO:
-      - supprimer ce block une fois qu'on a un font valid dans "FarFromHomecoming".
+      - supprimer ce block une fois qu'on a un "font" valid dans "FarFromHomecoming".
   */
 	font-family: "FontFallback";
 	src: url(../assets/fonts/SquarePeg-Regular.ttf) format("TrueType");
@@ -119,180 +123,6 @@ ul {
 	}
 }
 
-header {
-	display: flex;
-	flex: 1 1 100%;
-	flex-direction: column;
-	position: relative;
-}
-header .container {
-	padding-left: 2.125rem;
-	padding-right: 2.125rem;
-}
-@media screen and (min-width: 768px) {
-	header {
-		height: 100vmin;
-		min-height: 50vmax;
-	}
-	header .container {
-		padding-left: 2.5rem;
-		padding-right: 2.5rem;
-	}
-}
-
-.nav {
-	position: absolute;
-	z-index: 99;
-	top: 0;
-	left: 0;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
-}
-.nav .container-content {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	flex: 1 1 100%;
-}
-.nav-links {
-	display: none;
-}
-@media screen and (min-width: 768px) {
-	.nav {
-		background-color: var(--red);
-		position: relative;
-	}
-	.nav-links {
-		display: flex;
-		justify-content: flex-end;
-		gap: 8%;
-		width: 100%;
-		font-size: 0.9rem;
-		padding: 0.375rem 0;
-	}
-}
-
-.banner {
-	display: flex;
-	align-items: center;
-	height: 100%;
-	padding-top: 5.9375rem;
-	padding-bottom: 4rem;
-	background-image: url(../assets/images/img1.png),
-		linear-gradient(var(--black), var(--red));
-	background-repeat: no-repeat;
-	background-size: auto 100%;
-	/* 
-    Choisi "50% 100%" (ci-dessous) pour pouvoir pousser l'image (background-image) un peu à droite,
-    dans le but de minimiser la superposition entre l'image et le button à coté.
-    Cette valeur sera ramenée à "100% 100%" au prochain breakpoint. 
-  */
-	background-position: 50% 100%;
-}
-.banner .container-content {
-	display: flex;
-	flex-direction: column;
-}
-.banner .title {
-	margin-bottom: 0.5rem;
-	text-transform: uppercase;
-	/* 
-    TODO: 
-    - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
-    - supprimer "FontFallback", "letter-spacing", "font-style".
-  */
-	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
-	font-size: 2.25rem;
-	font-style: italic;
-	letter-spacing: 0.3rem;
-}
-.banner .description {
-	font-size: 1rem;
-	margin-bottom: 1.25rem;
-}
-.banner .btn-group {
-	display: flex;
-	gap: 0.75rem;
-}
-@media screen and (min-width: 440px) {
-	.banner {
-		/* Remet la "background-image" à sa position puisque la superposition avec le button à coté n'est plus problématique. */
-		background-position: 100%;
-	}
-}
-@media screen and (min-width: 576px) {
-	.banner {
-		padding-top: 7rem;
-		padding-bottom: 6rem;
-	}
-	.banner .title {
-		margin-bottom: 0.75rem;
-		/* 
-      TODO: 
-        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
-        - supprimer "font-style".
-    */
-		font-size: 3rem;
-		letter-spacing: 0.5rem;
-	}
-	.banner .description {
-		font-size: 1.1rem;
-		margin-bottom: 2rem;
-	}
-}
-@media screen and (min-width: 768px) {
-	.banner {
-		padding-top: 0;
-		padding-bottom: 0;
-	}
-	.banner .title {
-		margin-bottom: 2.5rem;
-		/* 
-      TODO: 
-        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
-        - supprimer "font-style".
-    */
-		font-size: 7rem;
-		letter-spacing: 0.8rem;
-	}
-	.banner .description {
-		order: 2;
-		font-size: 1.25rem;
-	}
-	.banner .btn-group {
-		order: 1;
-		margin-bottom: 2.5rem;
-	}
-}
-@media screen and (min-width: 992px) {
-	.banner {
-		flex: 1 0 100%;
-	}
-}
-
-.logo {
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	height: 2.25rem;
-}
-.logo img {
-	height: 100%;
-}
-.logo .cross {
-	height: 33%;
-}
-@media screen and (min-width: 768px) {
-	.logo {
-		height: 2.75rem;
-	}
-}
-@media screen and (min-width: 992px) {
-	.logo {
-		height: 3.125rem;
-	}
-}
-
 .btn {
 	display: inline-block;
 	font-size: 0.75rem;
@@ -363,6 +193,180 @@ header .container {
 	}
 }
 
+.logo {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	height: 2.25rem;
+}
+.logo img {
+	height: 100%;
+}
+.logo .cross {
+	height: 33%;
+}
+@media screen and (min-width: 768px) {
+	.logo {
+		height: 2.75rem;
+	}
+}
+@media screen and (min-width: 992px) {
+	.logo {
+		height: 3.125rem;
+	}
+}
+
+header {
+	display: flex;
+	flex: 1 1 100%;
+	flex-direction: column;
+	position: relative;
+}
+header .container {
+	padding-left: 2.125rem;
+	padding-right: 2.125rem;
+}
+@media screen and (min-width: 768px) {
+	header {
+		height: 100vmin;
+		min-height: 50vmax;
+	}
+	header .container {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
+	}
+}
+
+.nav {
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	padding-top: 1.25rem;
+	padding-bottom: 1.25rem;
+}
+.nav .container-content {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	flex: 1 1 100%;
+}
+.nav-links {
+	display: none;
+}
+@media screen and (min-width: 768px) {
+	.nav {
+		background-color: var(--red);
+		position: relative;
+	}
+	.nav-links {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8%;
+		width: 100%;
+		font-size: 0.9rem;
+		padding: 0.375rem 0;
+	}
+}
+
+.banner {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding-top: 5.9375rem;
+	padding-bottom: 5.9375rem;
+	background-image: url(../assets/images/img1.png),
+		linear-gradient(var(--black), var(--red));
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	/* 
+    Choisi "50% 100%" (ci-dessous) pour pouvoir pousser l'image (background-image) un peu à droite,
+    dans le but de minimiser la superposition entre l'image et le button à coté.
+    Cette valeur sera ramenée à "100% 100%" au prochain breakpoint. 
+  */
+	background-position: 50% 100%;
+}
+.banner .container-content {
+	display: flex;
+	flex-direction: column;
+}
+.banner .title {
+	margin-bottom: 0.5rem;
+	text-transform: uppercase;
+	/* 
+    TODO: 
+    - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+    - supprimer "FontFallback", "letter-spacing", "font-style".
+  */
+	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
+	font-size: 2.25rem;
+	font-style: italic;
+	letter-spacing: 0.3rem;
+}
+.banner .description {
+	font-size: 1rem;
+	margin-bottom: 1.25rem;
+}
+.banner .btn-group {
+	display: flex;
+	gap: 0.75rem;
+}
+@media screen and (min-width: 440px) {
+	.banner {
+		/* Remet la "background-image" à sa position puisque la superposition avec le button à coté n'est plus problématique. */
+		background-position: 100%;
+	}
+}
+@media screen and (min-width: 576px) {
+	.banner {
+		padding-top: 7rem;
+		padding-bottom: 6rem;
+	}
+	.banner .title {
+		margin-bottom: 0.75rem;
+		/* 
+      TODO: 
+        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+        - supprimer ou ajuster la valeur de "letter-spacing"
+    */
+		font-size: 3rem;
+		letter-spacing: 0.5rem;
+	}
+	.banner .description {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+}
+@media screen and (min-width: 768px) {
+	.banner {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.banner .title {
+		margin-bottom: 2.5rem;
+		/* 
+      TODO: 
+        - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
+        - supprimer ou ajuster la valeur de "letter-spacing"
+    */
+		font-size: 7rem;
+		letter-spacing: 0.8rem;
+	}
+	.banner .description {
+		order: 2;
+		font-size: 1.25rem;
+	}
+	.banner .btn-group {
+		order: 1;
+		margin-bottom: 2.5rem;
+	}
+}
+@media screen and (min-width: 992px) {
+	.banner {
+		flex: 1 0 100%;
+	}
+}
+
 .main-section {
 	text-align: center;
 }
@@ -379,7 +383,8 @@ header .container {
 	/* 
     TODO: 
     - ajuster la valeur de "font-size" ci-dessous une fois qu'un "font" valid est obtenu. 
-    - supprimer "FontFallback", "font-style", "word-spacing","letter-spacing".
+    - supprimer "FontFallback"
+    - supprimer ou ajuster les valeurs de "font-style", "word-spacing", "letter-spacing".
   */
 	font-family: "FarFromHomecoming", "FontFallback", sans-serif;
 	font-size: 1.65rem;
@@ -577,7 +582,7 @@ header .container {
 	margin-bottom: 1.5rem;
 }
 .card-body li::before {
-	/* Ceci est utilisé pour personnaliser le "list-style-type" de "li" */
+	/* Ceci est utilisé pour personaliser le "list-style-type" de "li" */
 	content: ".";
 	display: inline-block;
 	font-weight: 500;
